@@ -26,3 +26,12 @@ users.each do |user|
                       body: Faker::Lorem.paragraph)
   end
 end
+
+posts = Post.all
+
+posts.each do |post|
+  3.times do
+    post.comments.create(body: Faker::Lorem.sentence,
+                         user_id: rand(1..5))
+  end
+end
