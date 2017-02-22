@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   end
 
   # The destroy action removes the post permanently from the database
-  def destroy
+  def delete
     if @post.destroy
       flash[:notice] = "Successfully deleted post!"
       redirect_to posts_path
