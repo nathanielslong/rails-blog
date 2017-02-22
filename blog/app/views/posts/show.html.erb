@@ -16,7 +16,13 @@
       <h4><%= User.find(comment.user_id).full_name%></h4>
       <h5><%= comment.created_at.strftime('%Y %b %d') %></h5>
       <div><%= raw comment.body %></div>
+      <% if current_user == User.find(comment.user_id) %>
+        <p>This is your post!</p>
+        <%# <%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %1> %>
+        <%# <%= link_to "Delete", post_path(@post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %1> %>
+      <% end %>
       <hr>
     <% end %>
+    <!-- Need to add ability to make new comment, and something to edit previous comments  -->
   </div>
 </div>
