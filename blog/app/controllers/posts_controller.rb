@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # before most actions, check a user is actually logged in
   before_action :authenticate_user!, except: [:index, :show]
   # before the actions that require finding a specific post, finds that specific post
-  before_action :find_post, only: [:edit, :update, :show, :delete]
+  before_action :find_post, only: [:edit, :update, :show, :destroy]
 
   # Index action to render all posts
   def index
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   end
 
   # The destroy action removes the post permanently from the database
-  def delete
+  def destroy
     if @post.destroy
       flash[:notice] = "Successfully deleted post!"
       redirect_to posts_path
