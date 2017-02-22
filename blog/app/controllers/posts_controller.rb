@@ -11,12 +11,12 @@ class PostsController < ApplicationController
 
   # New action for creating post
   def new
-    @post = Post.new
+    @post = User.find(current_user).posts.new
   end
 
   # Create action saves the post into database
   def create
-    @post = Post.new
+    @post = User.find(current_user).posts.new
     @post.update_attributes(post_params)
     if @post.save
       flash[:notice] = "Successfully created post!"
