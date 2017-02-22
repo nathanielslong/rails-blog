@@ -13,7 +13,7 @@
       <div class="text-center">
         <%= link_to "READ MORE", post_path(post) %>
       </div>
-      <% if user_signed_in? %>
+      <% if current_user == User.find(post.user_id) %>
         <%= link_to "Show", post_path(post), class: "btn btn-primary" %>
         <%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
         <%= link_to "Delete", post_path(post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
