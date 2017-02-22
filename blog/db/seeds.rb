@@ -31,7 +31,8 @@ posts = Post.all
 
 posts.each do |post|
   3.times do
-    post.comments.create(body: Faker::Lorem.sentence,
-                         user_id: rand(1..5))
+    Comment.create(body: Faker::Lorem.sentence,
+                    user_id: rand(1..5),
+                    post_id: post.id)
   end
 end
