@@ -7,6 +7,7 @@ end
 
 gem 'bootstrap-sass'
 gem 'carrierwave'
+gem 'carrierwave-aws'
 gem 'ckeditor'
 gem 'devise'
 gem 'faker'
