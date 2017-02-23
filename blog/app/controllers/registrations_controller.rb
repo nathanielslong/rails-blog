@@ -1,8 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  def show
-    @user = User.find(params[:id])
-  end
+  # def show
+  #   @user = User.find(params[:id])
+  #   @posts = Post.where(user_id: params[:id])
+  # end
 
   private
 
