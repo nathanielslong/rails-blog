@@ -8,6 +8,14 @@
 
 require 'faker'
 
+def ids_generation(id)
+  if id + 1 > 5
+    1
+  else
+    id + 1
+  end
+end
+
 5.times do |t|
   User.new.tap do |user|
     user.first_name = Faker::Name.first_name
@@ -32,7 +40,12 @@ posts = Post.all
 posts.each do |post|
   3.times do
     Comment.create(body: Faker::Lorem.sentence,
-                    user_id: rand(1..5),
-                    post_id: post.id)
+                   user_id: rand(1..5),
+                   post_id: post.id)
   end
+end
+
+users.each do |user|
+  Relationship.create(follower_id: user.id,
+                      followed_id: ids_generation(user.id))
 end
