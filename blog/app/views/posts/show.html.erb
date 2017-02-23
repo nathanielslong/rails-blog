@@ -17,9 +17,9 @@
       <h5><%= comment.created_at.strftime('%Y %b %d') %></h5>
       <div><%= raw comment.body %></div>
       <% if current_user == User.find(comment.user_id) %>
-        <p><strong>This is your post!</strong></p>
-        <%# <%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %1> %>
-        <%# <%= link_to "Delete", post_path(@post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %1> %>
+        <p><strong>This is your comment!</strong></p>
+        <%= link_to "Edit", edit_post_comment_path(@post, comment), class: "btn btn-default" %>
+        <%= link_to "Delete", post_comment_path(@post, comment), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
       <% end %>
       <hr>
     <% end %>
