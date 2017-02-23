@@ -5,6 +5,17 @@
 /*
  * Globals
  */
+.intro-header {
+  background-image: url('header.jpeg');
+}
+
+.subheading {
+  text-shadow: 1px 1px 3px #FF0000;
+}
+
+.padded {
+  padding-top: 70px;
+}
 
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -61,7 +72,7 @@ h6, .h6 {
 
 /* Active state gets a caret at the bottom */
 .blog-nav {
-  a {
+  a, button {
     color: black;
   }
   color: #fff;
@@ -155,7 +166,6 @@ h6, .h6 {
   margin-bottom: 20px;
   color: #999;
 }
-
 
 /*
  * Footer

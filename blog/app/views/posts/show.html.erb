@@ -1,27 +1,29 @@
-<div class="col-sm-11 col-xs-12 blog-content">
-  <div class="text-center">
-    <h2><%= @post.title %></h2>
-    <h4><%= link_to "#{User.find(@post.user_id).full_name}", user_path(@post.user_id)%></h4>
-    <h5><%= @post.created_at.strftime('%Y %b %d') %></h5>
-    <div><%= raw @post.body %></div>
-    <% if current_user == User.find(@post.user_id) %>
-      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %>
-      <%= link_to "Delete", post_path(@post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
-    <% end %>
-    <br>
-    <br>
-    <h3>Comments</h3>
-    <hr>
-    <% @post.comments.each do |comment| %>
-      <h4><%= link_to "#{User.find(comment.user_id).full_name}", user_path(comment.user_id)%></h4>
-      <h5><%= comment.created_at.strftime('%Y %b %d') %></h5>
-      <div><%= raw comment.body %></div>
-      <% if current_user == User.find(comment.user_id) %>
-        <%= link_to "Edit", edit_post_comment_path(@post, comment), class: "btn btn-default" %>
-        <%= link_to "Delete", post_comment_path(@post, comment), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+<div class="container-fluid padded">
+  <div class="col-sm-11 col-xs-12 blog-content">
+    <div class="text-center">
+      <h2><%= @post.title %></h2>
+      <h4><%= link_to "#{User.find(@post.user_id).full_name}", user_path(@post.user_id)%></h4>
+      <h5><%= @post.created_at.strftime('%Y %b %d') %></h5>
+      <div><%= raw @post.body %></div>
+      <% if current_user == User.find(@post.user_id) %>
+        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %>
+        <%= link_to "Delete", post_path(@post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
       <% end %>
+      <br>
+      <br>
+      <h3>Comments</h3>
       <hr>
-    <% end %>
-    <%= link_to "New Comment", new_post_comment_path(@post, @comment), class: "btn btn-default" %>
+      <% @post.comments.each do |comment| %>
+        <h4><%= link_to "#{User.find(comment.user_id).full_name}", user_path(comment.user_id)%></h4>
+        <h5><%= comment.created_at.strftime('%Y %b %d') %></h5>
+        <div><%= raw comment.body %></div>
+        <% if current_user == User.find(comment.user_id) %>
+          <%= link_to "Edit", edit_post_comment_path(@post, comment), class: "btn btn-default" %>
+          <%= link_to "Delete", post_comment_path(@post, comment), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+        <% end %>
+        <hr>
+      <% end %>
+      <%= link_to "New Comment", new_post_comment_path(@post, @comment), class: "btn btn-default" %>
+    </div>
   </div>
 </div>
