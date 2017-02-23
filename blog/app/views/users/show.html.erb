@@ -1,1 +1,24 @@
-<%= @user.full_name %>
+<h1><%= @user.full_name %>'s Profile</h1>
+<h3><%= "#{@user.followers.count} followers, #{@user.followed.count} followed." %></h3>
+<% if @user.followers.include?(current_user) %>
+  <h3>You're following this user!</h3>
+<% end %>
+<% @posts.each do |post| %>
+  <div class="col-xs-12 text-center">
+    <div class="text-center">
+      <h2><%= post.title %></h2>
+      <h6><%= post.created_at.strftime('%Y %b %d') %></h6>
+    </div>
+    <div>
+      <%= raw(post.body).truncate(358) %>
+    </div>
+    <div class="text-center">
+      <%= link_to "READ MORE", post_path(post) %>
+    </div>
+    <% if current_user == User.find(post.user_id) %>
+      <%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
+      <%= link_to "Delete", post_path(post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+    <% end %>
+    <hr />
+  </div>
+<% end %>
