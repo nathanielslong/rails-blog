@@ -2,10 +2,24 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   before_action :find_comment, only: [:edit, :update, :show, :destroy]
-  before_action :find_post, only: [:edit, :update, :show, :destroy]
+  before_action :find_post, only: [:new, :create, :edit, :update, :show, :destroy]
+
   # New action for creating comment
   def new
-    @comment = Post.find(params[:id]).comments.new
+    @comment = Comment.new
+  end
+
+  def create
+    @comment = @post.comments.new
+    @comment.update_attributes(comment_params)
+    @comment.update_attributes(user_id: current_user.id)
+    if @comment.save
+      flash[:notice] = "Successfully created comment!"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Error creating new comment!"
+      render :new
+    end
   end
 
   def edit
@@ -13,18 +27,27 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes(comment_params)
-      flash[:notice] = "Successfully updated post!"
+      flash[:notice] = "Successfully updated comment!"
       redirect_to post_path(@post)
     else
-      flash[:alert] = "Error updating post!"
+      flash[:alert] = "Error updating comment!"
       render :edit
+    end
+  end
+
+  def destroy
+    if @comment.destroy
+      flash[:notice] = "Successfully deleted comment!"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Error deleting comment!"
     end
   end
 
   private
 
-  # sets the params we get with each post, need to add user_id eventually
-  def comment_params 
+  # sets the params we get with each comment
+  def comment_params
     params.require(:comment).permit(:body)
   end
 
