@@ -2,6 +2,7 @@
 <h3><%= "#{@user.followers.count} followers, #{@user.followed.count} followed." %></h3>
 <% if @user.followers.include?(current_user) %>
   <h3>You're following this user!</h3>
+  <%= link_to "Stop following this user", destroy_user_follow_path %>
 <% end %>
 <% @posts.each do |post| %>
   <div class="col-xs-12 text-center">

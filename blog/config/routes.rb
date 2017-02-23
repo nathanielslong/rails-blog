@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show]
 
-  get 'users/:id/follow' => 'users#follow'
+  get 'users/:id/follow' => 'users#follow', as: "user_follow"
+  get 'users/:id/follow/destroy' => 'users#destroy', as: "destroy_user_follow"
 
   resources :posts do
     resources :comments
