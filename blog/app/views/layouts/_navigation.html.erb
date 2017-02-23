@@ -16,6 +16,7 @@
         <% if user_signed_in? %>
           <!--This block is only visible to signed in users -->
           <li><%= link_to 'New Post', new_post_path %></li>
+          <li><%= link_to 'My Profile', user_path(current_user.id)%></li>
           <li><%= link_to 'My Account', edit_user_registration_path  %></li>
           <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
           <!-- The block ends here -->
