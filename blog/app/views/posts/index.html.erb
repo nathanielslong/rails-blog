@@ -21,15 +21,17 @@
             <h5><%= link_to "#{User.find(post.user_id).full_name}", user_path(post.user_id)%></h4>
             <h6 class="blog-post-meta"><%= post.created_at.strftime('%Y %b %d') %></h6>
           </div>
-          <div>
+          <div class="text-center">
             <p class="blog-post-meta"><%= raw(post.body).truncate(358) %></p>
           </div>
           <div class="text-center">
             <%= link_to "READ MORE", post_path(post) %>
           </div>
+          <div class="text-center">
           <% if current_user == User.find(post.user_id) %>
             <%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
-            <%= link_to "Delete", post_path(post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+            <%= link_to "Delete", post_path(post), class: "btn btn-default", data: {:confirm => "Are you sure?"}, method: :delete %>
+          </div>
           <% end %>
           <hr />
         </div>
