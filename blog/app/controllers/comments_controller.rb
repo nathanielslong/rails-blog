@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
+  # Runs private methods defined lower before certain actions, in order to DRY up code
   before_action :find_comment, only: [:edit, :update, :show, :destroy]
   before_action :find_post, only: [:new, :create, :edit, :update, :show, :destroy]
 
@@ -9,6 +10,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+  # Create action for new comment
   def create
     @comment = @post.comments.new
     @comment.update_attributes(comment_params)
@@ -58,4 +60,5 @@ class CommentsController < ApplicationController
   def find_post
     @post = Post.find(params[:post_id])
   end
+
 end

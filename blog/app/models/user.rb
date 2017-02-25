@@ -14,10 +14,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
+  # Class method to follow a user
   def follow!(user)
     followed << user
   end
 
+  # Set the full name to anonymous if someone didn't enter their first name during sign-up
   def full_name
     if first_name
       self.first_name + " " + self.last_name

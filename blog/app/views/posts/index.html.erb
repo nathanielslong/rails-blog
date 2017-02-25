@@ -1,24 +1,41 @@
-<div class="container">
-  <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-    <% @posts.each do |post| %>
-      <div class="col-xs-12 text-center">
-        <div class="text-center">
-          <h2><%= post.title %></h2>
-          <h4><%= link_to "#{User.find(post.user_id).full_name}", user_path(post.user_id)%></h4>
-          <h6><%= post.created_at.strftime('%Y %b %d') %></h6>
+<header class="intro-header" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1>Code Tricks</h1>
+          <hr class="small">
+          <span class="subheading">A Hack Sharing Community Blogosphere</span>
         </div>
-        <div>
-          <%= raw(post.body).truncate(358) %>
-        </div>
-        <div class="text-center">
-          <%= link_to "READ MORE", post_path(post) %>
-        </div>
-        <% if current_user == User.find(post.user_id) %>
-          <%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
-          <%= link_to "Delete", post_path(post), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
-        <% end %>
-        <hr />
       </div>
-    <% end %>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <% @posts.each do |post| %>
+        <div class="post-preview">
+          <div class="text-center">
+            <h3 class=""><%= post.title %></h2>
+            <h5><%= link_to "#{User.find(post.user_id).full_name}", user_path(post.user_id)%></h4>
+            <h6 class="blog-post-meta"><%= post.created_at.strftime('%Y %b %d') %></h6>
+          </div>
+          <div class="text-center">
+            <p class="blog-post-meta"><%= raw(post.body).truncate(358) %></p>
+          </div>
+          <div class="text-center">
+            <%= link_to "READ MORE", post_path(post) %>
+          </div>
+          <div class="text-center">
+          <% if current_user == User.find(post.user_id) %>
+            <%= link_to "Edit", edit_post_path(post), class: "btn btn-default" %>
+            <%= link_to "Delete", post_path(post), class: "btn btn-default", data: {:confirm => "Are you sure?"}, method: :delete %>
+          </div>
+          <% end %>
+          <hr />
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
