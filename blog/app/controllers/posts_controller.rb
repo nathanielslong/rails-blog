@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # before most actions, check a user is actually logged in
   before_action :authenticate_user!, except: [:index, :show]
+
   # before the actions that require finding a specific post, finds that specific post
   before_action :find_post, only: [:edit, :update, :show, :destroy]
 
@@ -66,4 +67,5 @@ class PostsController < ApplicationController
   def find_post
     @post = Post.find(params[:id])
   end
+
 end

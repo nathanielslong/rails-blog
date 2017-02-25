@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # Users controller is fairly small, due to devise controlling most of the user actions
 
   def show
     @user = User.find(params[:id])
