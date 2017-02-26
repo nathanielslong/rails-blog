@@ -19,7 +19,7 @@
         <div><%= raw comment.body %></div>
         <% if current_user == User.find(comment.user_id) %>
           <%= link_to "Edit", edit_post_comment_path(@post, comment), class: "btn btn-default" %>
-          <%= link_to "Delete", post_comment_path(@post, comment), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+          <%= link_to "Delete", post_comment_path(@post, comment), class: "btn btn-default", data: {:confirm => "Are you sure?"}, method: :delete %>
         <% end %>
         <hr>
       <% end %>
